@@ -1,9 +1,9 @@
 <template>
-<RouterView/>
+CocktailRandom
 </template>
 <script setup>
-import { RouterView } from 'vue-router';
+
 </script>
 <style lang="scss" scoped >
-
+@import '../assets/styles/main.scss';
 </style>

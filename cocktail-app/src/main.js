@@ -1,10 +1,14 @@
-import './assets/main.css'
+import './assets/styles/main.scss'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
+
+app.use(ElementPlus)
 
 const app = createApp(App)
 
