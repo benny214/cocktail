@@ -5,5 +5,5 @@ Home
 
 </script>
 <style lang="scss" scoped >
-@import './assets/styles/main.scss';
+@import '@/assets/styles/main.scss';
 </style>

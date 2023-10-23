@@ -13,7 +13,7 @@ const router = createRouter({
     },
     {
       path: '/cocktail/:rid',
-      name: 'home',
+      name: 'cocktail',
       component: Cocktail
     },
     {
