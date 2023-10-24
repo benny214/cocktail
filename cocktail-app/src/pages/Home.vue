@@ -1,7 +1,7 @@
 <template>
   <AppLayout imgUrl="'/src/assets/img/bg-1.jpg'">
     <div class="info">
-      <div class="info__inner">
+      <div v-if="!ingredient || !cocktails" class="info__inner">
         <h1 class="info__title">Choose your drink</h1>
         <div class="info__select">
           <el-select
@@ -19,30 +19,43 @@
           </el-select>
         </div>
         <div class="info__text">
-          Try our delicious cocktail recipes for every occasion. Find delicious cocktail recipes by ingredient through our cocktail generator.
+          Try our delicious cocktail recipes for every occasion. Find delicious
+          cocktail recipes by ingredient through our cocktail generator.
         </div>
 
         <div class="info__img">
-          <img src="/src/assets/img/coctails.png" class="img">
+          <img src="/src/assets/img/coctails.png" class="img" />
+        </div>
+      </div>
+
+      <div v-else class="info__inner">
+        <h1 class="info__title">COCKTAILS WITH {{ ingredient }}</h1>
+        <div class="coctails__list">
+          <CocktailThumb
+            v-for="cocktail in cocktails"
+            :key="cocktail.idDrink"
+            :cocktail="cocktail"
+          />
         </div>
       </div>
     </div>
   </AppLayout>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 import AppLayout from "../components/AppLayout.vue";
 import { useRootStore } from "../stores/root";
 import { storeToRefs } from "pinia";
+import CocktailThumb from "../components/CocktailThumb.vue";
 
 const rootStore = useRootStore();
 rootStore.getIngredients();
 
 const { ingredients, cocktails } = storeToRefs(rootStore);
-const ingredient = ref(null)
+const ingredient = ref(null);
 
 function getCocktails() {
-  rootStore.getCocktails(ingredient.value)
+  rootStore.getCocktails(ingredient.value);
 }
 </script>
 <style lang="scss" scoped>
@@ -66,11 +79,21 @@ function getCocktails() {
     text-align: center;
     font-size: 16px;
     line-height: 36px;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     max-width: 516px;
   }
   &__img {
     margin-top: 60px;
   }
+}
+
+.coctails__list {
+  display: flex;
+  //justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  max-height: 400px;
+  flex-wrap: wrap;
+  overflow-y: auto;
 }
 </style>

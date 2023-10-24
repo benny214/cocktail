@@ -16,11 +16,10 @@ const props = defineProps({
 })
 </script>
 <style lang="scss" scoped>
-  @import '../assets/styles/main.scss';
+  @import '../assets/styles/main';
 
   .root {
     display: flex;
-    background-color: $main-bg-c;
     min-height: 100vh;
 
     &__img {
