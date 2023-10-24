@@ -2,6 +2,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html, body {
@@ -15,4 +17,20 @@ html, body {
 
 a {
   color: inherit;
+}
+
+.info__title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  &::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    margin: 32px auto 0;
+    background-color: $accent;
+  }
 }

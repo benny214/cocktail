@@ -3,6 +3,7 @@
     <div :style="`background-image: url(${imgUrl})`" class="root__img"></div>
     <div class="root__main">
       <el-button class="main__btn">Get random cocktail</el-button>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -23,7 +24,7 @@ const props = defineProps({
     min-height: 100vh;
 
     &__img {
-      width: 100%;
+      width: 50%;
       background-repeat: no-repeat;
       background-position: 50% 50%;
       background-size: cover;
@@ -47,8 +48,10 @@ const props = defineProps({
     font-weight: 400;
     border-width: 0;
     transition: all .2s linear;
+    font-family: 'Raleway', 'Arial', sans-serif;
 
-    &:hover{
+    &:hover,
+    &:active{
       background-color: $accent-hov;
     }
   }
