@@ -8,6 +8,7 @@
             v-model="ingredient"
             placeholder="Choose main ingredient"
             class="select"
+            @change="getCocktails"
           >
             <el-option
               v-for="item in ingredients"
@@ -19,6 +20,10 @@
         </div>
         <div class="info__text">
           Try our delicious cocktail recipes for every occasion. Find delicious cocktail recipes by ingredient through our cocktail generator.
+        </div>
+
+        <div class="info__img">
+          <img src="/src/assets/img/coctails.png" class="img">
         </div>
       </div>
     </div>
@@ -33,8 +38,12 @@ import { storeToRefs } from "pinia";
 const rootStore = useRootStore();
 rootStore.getIngredients();
 
-const { ingredients } = storeToRefs(rootStore);
+const { ingredients, cocktails } = storeToRefs(rootStore);
 const ingredient = ref(null)
+
+function getCocktails() {
+  rootStore.getCocktails(ingredient.value)
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/styles/main.scss";
@@ -59,6 +68,9 @@ const ingredient = ref(null)
     line-height: 36px;
     letter-spacing: .1em;
     max-width: 516px;
+  }
+  &__img {
+    margin-top: 60px;
   }
 }
 </style>
