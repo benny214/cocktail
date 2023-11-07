@@ -5,10 +5,12 @@
         <h1 class="info__title">Choose your drink</h1>
         <div class="info__select">
           <el-select
-            v-model="ingredient"
+            v-model="rootStore.ingredient"
             placeholder="Choose main ingredient"
             class="select"
             @change="getCocktails"
+            filterable
+            allow-create
           >
             <el-option
               v-for="item in ingredients"
@@ -42,7 +44,6 @@
   </AppLayout>
 </template>
 <script setup>
-import { ref } from "vue";
 import AppLayout from "../components/AppLayout.vue";
 import { useRootStore } from "../stores/root";
 import { storeToRefs } from "pinia";
@@ -51,11 +52,10 @@ import CocktailThumb from "../components/CocktailThumb.vue";
 const rootStore = useRootStore();
 rootStore.getIngredients();
 
-const { ingredients, cocktails } = storeToRefs(rootStore);
-const ingredient = ref(null);
+const { ingredients, ingredient, cocktails } = storeToRefs(rootStore);
 
 function getCocktails() {
-  rootStore.getCocktails(ingredient.value);
+  rootStore.getCocktails(rootStore.ingredient);
 }
 </script>
 <style lang="scss" scoped>
@@ -89,7 +89,6 @@ function getCocktails() {
 
 .coctails__list {
   display: flex;
-  //justify-content: space-between;
   align-items: center;
   margin-top: 60px;
   max-height: 400px;

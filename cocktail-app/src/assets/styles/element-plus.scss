@@ -16,3 +16,9 @@
     color: $text-muted;
   }
 }
+
+.el-select__popper {
+  .el-select-dropdown__item {
+    padding-left: 10px;
+  }
+}

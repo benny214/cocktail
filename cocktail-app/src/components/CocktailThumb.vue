@@ -36,6 +36,10 @@ const props = defineProps({
 }
 
 .cocktail__name {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-top: 15px;
   letter-spacing: 0.1em;
 }
