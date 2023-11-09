@@ -2,56 +2,83 @@
   <div class="root">
     <div :style="`background-image: url(${imgUrl})`" class="root__img"></div>
     <div class="root__main">
-      <el-button class="main__btn">Get random cocktail</el-button>
+      <div class="root__btns">
+        <el-button v-if="isBackBtnVisible" @click="backFunc" type="primary" :icon="Back" circle  class="root__back-btn"/>
+        <el-button class="main__btn">Get random cocktail</el-button>
+      </div>
       <slot></slot>
     </div>
   </div>
 </template>
 <script setup>
+import { Back } from "@element-plus/icons-vue";
 const props = defineProps({
-  imgUrl : {
+  imgUrl: {
     type: String,
+    required: true,
+  },
+  backFunc: {
+    type: Function,
     required: true
+  },
+  isBackBtnVisible: {
+    type: Boolean,
+    default: true
   }
-})
+});
 </script>
 <style lang="scss" scoped>
-  @import '../assets/styles/main';
+@import "../assets/styles/main";
 
-  .root {
-    display: flex;
-    min-height: 100vh;
+.root {
+  display: flex;
+  min-height: 100vh;
 
-    &__img {
-      width: 50%;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      background-size: cover;
-    }
-
-    &__main {
-      width: 50%;
-      position: relative;
-      padding: 32px 40px;
-    }
+  &__img {
+    width: 50%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
   }
 
-  .main__btn {
-    padding: 8px 16px;
-    position: absolute;
-    top: 32px;
-    right: 40px;
-    background-color: $accent;
-    color: $text-c;
-    font-size: 16px;
-    font-weight: 400;
-    border-width: 0;
-    transition: all .2s linear;
-    font-family: 'Raleway', 'Arial', sans-serif;
-
-    &:hover,
-    &:active{
-      background-color: $accent-hov;
-    }
+  &__main {
+    width: 50%;
+    position: relative;
+    padding: 32px 40px;
   }
+}
+
+.root__btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main__btn {
+  padding: 8px 16px;
+  position: absolute;
+  top: 32px;
+  right: 40px;
+  background-color: $accent;
+  color: $text-c;
+  font-size: 16px;
+  font-weight: 400;
+  border-width: 0;
+  transition: all 0.2s linear;
+  font-family: "Raleway", "Arial", sans-serif;
+
+  &:hover,
+  &:active {
+    background-color: $accent-hov;
+  }
+}
+
+.root__back-btn {
+  background-color: transparent;
+  border-color: #fff;
+
+  &:hover {
+    border-color: $accent;
+  }
+}
 </style>
